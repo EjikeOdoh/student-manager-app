@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+
 </head>
+
 <body>
     <nav>
         <a href="index.html">Home</a>
@@ -34,8 +39,16 @@
                     <td>Male</td>
                     <td>15</td>
                     <td>
-                        <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15"><button type="button">Edit</button></a>
-                        <button type="button">Delete</button>
+                        <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15"><button type="button">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button></a>
+                        <button type="button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +57,8 @@
                     <td>Female</td>
                     <td>14</td>
                     <td>
-                        <a href="edit-student.html?name=Jane%20Smith&class=9B&gender=Female&age=14"><button type="button">Edit</button></a>
+                        <a href="edit-student.html?name=Jane%20Smith&class=9B&gender=Female&age=14"><button
+                                type="button">Edit</button></a>
                         <button type="button">Delete</button>
                     </td>
                 </tr>
@@ -54,7 +68,20 @@
                     <td>Male</td>
                     <td>16</td>
                     <td>
-                        <a href="edit-student.html?name=Kofi%20Mensah&class=11C&gender=Male&age=16"><button type="button">Edit</button></a>
+                        <a href="edit-student.html?name=Kofi%20Mensah&class=11C&gender=Male&age=16"><button
+                                type="button">Edit</button></a>
+                        <button type="button">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kofi Mensah</td>
+                    <td>11C</td>
+                    <td>Male</td>
+                    <td>16</td>
+                    <td>
+                        <a href="edit-student.html?name=Kofi%20Mensah&class=11C&gender=Male&age=16"><button
+                                type="button">Edit</button></a>
                         <button type="button">Delete</button>
                     </td>
                 </tr>
@@ -62,4 +89,5 @@
         </table>
     </main>
 </body>
+
 </html>
