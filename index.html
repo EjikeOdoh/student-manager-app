@@ -6,6 +6,59 @@
     <title>Student Manager</title>
 </head>
 <body>
-    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="add-student.html">Add Student</a>
+    </nav>
+    <main>
+        <h1>Student Manager</h1>
+        <div>
+            <label for="student-search">Search students:</label>
+            <input id="student-search" type="search" placeholder="Search by name, class, gender, or age">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>10A</td>
+                    <td>Male</td>
+                    <td>15</td>
+                    <td>
+                        <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15"><button type="button">Edit</button></a>
+                        <button type="button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>9B</td>
+                    <td>Female</td>
+                    <td>14</td>
+                    <td>
+                        <a href="edit-student.html?name=Jane%20Smith&class=9B&gender=Female&age=14"><button type="button">Edit</button></a>
+                        <button type="button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kofi Mensah</td>
+                    <td>11C</td>
+                    <td>Male</td>
+                    <td>16</td>
+                    <td>
+                        <a href="edit-student.html?name=Kofi%20Mensah&class=11C&gender=Male&age=16"><button type="button">Edit</button></a>
+                        <button type="button">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>
