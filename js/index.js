@@ -6,27 +6,11 @@ let records = [
     { id: 4, name: "Ibrahim Sadiq", currentClass: "SS3", gender: "Male", age: 16 }
 ]
 
-// < tr >
-//                 <td>John Doe</td>
-//                 <td>10A</td>
-//                 <td>Male</td>
-//                 <td>15</td>
-//                 <td>
-//                     <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15"><button type="button">
-//                             <span class="material-symbols-outlined">
-//                                 edit
-//                             </span>
-//                         </button></a>
-//                     <button type="button">
-//                         <span class="material-symbols-outlined">
-//                             delete
-//                         </span>
-//                     </button>
-//                 </td>
-//             </tr >
+
+
+const container = document.querySelector("tbody")
 
 // Updating table using innerhtml
-const container = document.querySelector("tbody")
 // Convert array into stringed html elements
 let stringedArr = records.map((s) => {
     return `
@@ -50,13 +34,49 @@ let stringedArr = records.map((s) => {
                 </tr>
 `
 })
-
+// Convert array of stringed html elements to a single string
 stringedArr = stringedArr.join("")
-
+// Assign this single string as value of innerhtml of container
 container.innerHTML = stringedArr
 
 
-let numbers = [{name: "Hi"}, 2, 3, 6, 5]
-let transformed = numbers.map(x=>"Hello")
 
-console.log(transformed)
+// Updating using createElement
+// records.forEach((student)=>{
+//     // Create row for each student
+//     const row = document.createElement('tr')
+//     // For each key in the object, create a td
+//     const nameColumn = document.createElement('td')
+//     nameColumn.textContent = student.name
+//     row.appendChild(nameColumn)
+
+//     const classColumn = document.createElement('td')
+//     classColumn.textContent = student.currentClass
+//     row.appendChild(classColumn)
+
+//     const genderColumn = document.createElement('td')
+//     genderColumn.textContent = student.gender
+//     row.appendChild(genderColumn)
+
+//     const ageColumn = document.createElement('td')
+//     ageColumn.textContent = student.age
+//     row.appendChild(ageColumn)
+
+//     const actionsColumn = document.createElement('td')
+//     actionsColumn.innerHTML = `         <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15">
+//                             <button type="button">
+//                                 <span class="material-symbols-outlined">
+//                                     edit
+//                                 </span>
+//                             </button></a>
+//                         <button type="button">
+//                             <span class="material-symbols-outlined">
+//                                 delete
+//                             </span>
+//                         </button>`
+//     row.appendChild(actionsColumn)
+
+
+//     // Append row to container
+//     container.appendChild(row)
+// })
