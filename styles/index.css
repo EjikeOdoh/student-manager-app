@@ -1,20 +1,4 @@
- main {
-    width: 600px;
-    background-color: #E5EEE4;
-    margin-inline: auto;
-    margin-top: 50px;
-    padding: 40px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
- }
 
- main h1 {
-    font-size: 3rem;
-    text-align: center;
-    color: #462C7D;
- }
 
  main > div {
     display: flex;
