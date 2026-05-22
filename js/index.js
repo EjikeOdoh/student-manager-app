@@ -1,12 +1,14 @@
+const startValue = localStorage.getItem('students')
+let records;
+if (startValue !== null) {
+    records = JSON.parse(startValue)
+} else {
+    records = []
+}
 
-let records = [
-    { id: 1, name: "Amina Bello", currentClass: "SS1", gender: "Female", age: 14 },
-    { id: 2, name: "Chinedu Okafor", currentClass: "SS2", gender: "Male", age: 15 },
-    { id: 3, name: "Fatima Musa", currentClass: "SS1", gender: "Female", age: 13 },
-    { id: 4, name: "Ibrahim Sadiq", currentClass: "SS3", gender: "Male", age: 16 }
-]
+// let records = JSON.parse(localStorage.getItem(students)) ?? []
 
-const container = document.querySelector("tbody")
+const container = document.querySelector('tbody')
 
 // Updating table using innerhtml
 // Convert array into stringed html elements
@@ -64,7 +66,7 @@ function updateTableUI() {
         row.appendChild(ageColumn)
 
         const actionsColumn = document.createElement('td')
-        actionsColumn.innerHTML = `         <a href="edit-student.html?name=John%20Doe&class=10A&gender=Male&age=15">
+        actionsColumn.innerHTML = `         <a href="edit-student.html?id=${student.id}&name=${student.name}">
                             <button type="button">
                                 <span class="material-symbols-outlined">
                                     edit
@@ -83,8 +85,8 @@ function updateTableUI() {
     })
 }
 
-
 updateTableUI()
+console.table(records)
 
 //We need to get the student details from the form
 //Target form
@@ -102,6 +104,7 @@ form.addEventListener('submit', (event) => {
 
     //Create new student object from values inside the form
     const newStudent = {
+        id: records.length + 1,
         name: studentNameInput.value,
         currentClass: studentClassInput.value,
         gender: studentGenderInput.value,
@@ -110,9 +113,11 @@ form.addEventListener('submit', (event) => {
 
     //Add new student object to array
     records.push(newStudent)
+    localStorage.setItem("students", JSON.stringify(records))
 
     //Use createElements to render the updated array
     updateTableUI()
+    console.table(records)
 
     studentNameInput.value = ""
     studentClassInput.value = ""
