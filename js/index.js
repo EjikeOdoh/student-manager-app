@@ -6,7 +6,6 @@ let records = [
     { id: 4, name: "Ibrahim Sadiq", currentClass: "SS3", gender: "Male", age: 16 }
 ]
 
-
 const container = document.querySelector("tbody")
 
 // Updating table using innerhtml
@@ -36,14 +35,14 @@ let stringedArr = records.map((s) => {
 // Convert array of stringed html elements to a single string
 stringedArr = stringedArr.join("")
 // Assign this single string as value of innerhtml of container
-container.innerHTML = stringedArr
+// container.innerHTML = stringedArr
 
 // Updating using createElement
 
-function updateTable() {
-    // Clear the table before updating
+// Loop through the records and create a row for each student 
+function updateTableUI() {
     container.innerHTML = ""
-    // Loop through the records and create a row for each student 
+
     records.forEach((student) => {
         // Create row for each student
         const row = document.createElement('tr')
@@ -84,23 +83,39 @@ function updateTable() {
     })
 }
 
-updateTable()
 
+updateTableUI()
+
+//We need to get the student details from the form
+//Target form
 const form = document.querySelector('form')
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const name = document.querySelector('#student-name')
-    const age = document.querySelector('#student-age')
-    const gender = document.querySelector('#student-gender')
-    const currentClass = document.querySelector('#student-class')
+//Add event listener to form (submit)
+form.addEventListener('submit', (event) => {
 
+    event.preventDefault() // prevent default form submission behavior
+
+    //Get values from input elements inside the form
+    const studentNameInput = document.querySelector('#student-name')
+    const studentClassInput = document.querySelector('#student-class')
+    const studentGenderInput = document.querySelector('#student-gender')
+    const studentAgeInput = document.querySelector('#student-age')
+
+    //Create new student object from values inside the form
     const newStudent = {
-        id: records.length + 1,
-        name: name.value,
-        age: age.value,
-        gender: gender.value,
-        currentClass: currentClass.value
+        name: studentNameInput.value,
+        currentClass: studentClassInput.value,
+        gender: studentGenderInput.value,
+        age: parseInt(studentAgeInput.value)
     }
+
+    //Add new student object to array
     records.push(newStudent)
-    updateTable()
+
+    //Use createElements to render the updated array
+    updateTableUI()
+
+    studentNameInput.value = ""
+    studentClassInput.value = ""
+    studentGenderInput.value = ""
+    studentAgeInput.value = ""
 })
