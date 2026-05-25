@@ -1,3 +1,4 @@
+
 const startValue = localStorage.getItem('students')
 let records;
 if (startValue !== null) {
@@ -12,30 +13,30 @@ const container = document.querySelector('tbody')
 
 // Updating table using innerhtml
 // Convert array into stringed html elements
-let stringedArr = records.map((s) => {
-    return `
-                <tr>
-                    <td>${s.name}</td>
-                    <td>${s.currentClass}</td>
-                    <td>${s.gender}</td>
-                    <td>${s.age}</td>
-                    <td>
-                        <a href="edit-student.html?"><button type="button">
-                                <span class="material-symbols-outlined">
-                                    edit
-                                </span>
-                            </button></a>
-                        <button type="button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </button>
-                    </td>
-                </tr>
-`
-})
+// let stringedArr = records.map((s) => {
+//     return `
+//                 <tr>
+//                     <td>${s.name}</td>
+//                     <td>${s.currentClass}</td>
+//                     <td>${s.gender}</td>
+//                     <td>${s.age}</td>
+//                     <td>
+//                         <a href="edit-student.html?"><button type="button">
+//                                 <span class="material-symbols-outlined">
+//                                     edit
+//                                 </span>
+//                             </button></a>
+//                         <button type="button">
+//                             <span class="material-symbols-outlined">
+//                                 delete
+//                             </span>
+//                         </button>
+//                     </td>
+//                 </tr>
+// `
+// })
 // Convert array of stringed html elements to a single string
-stringedArr = stringedArr.join("")
+// stringedArr = stringedArr.join("")
 // Assign this single string as value of innerhtml of container
 // container.innerHTML = stringedArr
 
@@ -66,31 +67,57 @@ function updateTableUI() {
         row.appendChild(ageColumn)
 
         const actionsColumn = document.createElement('td')
-        actionsColumn.innerHTML = `         <a href="edit-student.html?id=${student.id}&name=${student.name}">
+        actionsColumn.innerHTML = `<a href="edit-student.html?id=${student.id}&name=${student.name}">
                             <button type="button">
                                 <span class="material-symbols-outlined">
                                     edit
                                 </span>
                             </button></a>
-                        <button type="button">
+                        <button type="button" onClick="deleteStudent(${student.id})">
                             <span class="material-symbols-outlined">
                                 delete
                             </span>
-                        </button>`
+                        </button>
+                        `
         row.appendChild(actionsColumn)
+        // const editLink = document.createElement('a')
+        // editLink.href = `edit-student.html?id=${student.id}&name=${student.name}`
 
+        // const editBtn = document.createElement('button')
+        // editBtn.type = 'button'
+        // editBtn.textContent = "Edit"
 
+        // const editIcon = document.createElement('span')
+        // editBtn.classList.add("material-symbols-outlined")
+        // editBtn.textContent = "edit"
+
+        // editBtn.appendChild(editIcon)
+
+        // editLink.appendChild(editBtn)
+
+        // const deleteBtn = document.createElement('button')
+        // deleteBtn.type = 'button'
+
+        // actionsColumn.appendChild(editLink)
+        // row.appendChild(actionsColumn)
+        // actionsColumn.appendChild(deleteBtn)
+
+        // const deleteIcon = document.createElement('span')
+        // deleteBtn.classList.add("material-symbols-outlined")
+        // deleteBtn.textContent = "delete"
+
+        // deleteBtn.appendChild(deleteIcon)
         // Append row to container
         container.appendChild(row)
     })
 }
-
 updateTableUI()
-console.table(records)
+// console.table(records)
 
 //We need to get the student details from the form
 //Target form
 const form = document.querySelector('form')
+// console.dir(form)
 //Add event listener to form (submit)
 form.addEventListener('submit', (event) => {
 
@@ -124,3 +151,13 @@ form.addEventListener('submit', (event) => {
     studentGenderInput.value = ""
     studentAgeInput.value = ""
 })
+
+
+
+function deleteStudent(id) {
+    records = records.filter((student) => {
+        return student.id !== id
+    })
+    localStorage.setItem("students", JSON.stringify(records))
+    updateTableUI()
+}
