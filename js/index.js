@@ -7,40 +7,7 @@ if (startValue !== null) {
     records = []
 }
 
-// let records = JSON.parse(localStorage.getItem(students)) ?? []
-
 const container = document.querySelector('tbody')
-
-// Updating table using innerhtml
-// Convert array into stringed html elements
-// let stringedArr = records.map((s) => {
-//     return `
-//                 <tr>
-//                     <td>${s.name}</td>
-//                     <td>${s.currentClass}</td>
-//                     <td>${s.gender}</td>
-//                     <td>${s.age}</td>
-//                     <td>
-//                         <a href="edit-student.html?"><button type="button">
-//                                 <span class="material-symbols-outlined">
-//                                     edit
-//                                 </span>
-//                             </button></a>
-//                         <button type="button">
-//                             <span class="material-symbols-outlined">
-//                                 delete
-//                             </span>
-//                         </button>
-//                     </td>
-//                 </tr>
-// `
-// })
-// Convert array of stringed html elements to a single string
-// stringedArr = stringedArr.join("")
-// Assign this single string as value of innerhtml of container
-// container.innerHTML = stringedArr
-
-// Updating using createElement
 
 // Loop through the records and create a row for each student 
 function updateTableUI() {
@@ -50,6 +17,11 @@ function updateTableUI() {
         // Create row for each student
         const row = document.createElement('tr')
         // For each key in the object, create a td
+
+        const iDColumn = document.createElement('td')
+        iDColumn.textContent = student.id
+        row.appendChild(iDColumn)
+
         const nameColumn = document.createElement('td')
         nameColumn.textContent = student.name
         row.appendChild(nameColumn)
@@ -111,48 +83,9 @@ function updateTableUI() {
         container.appendChild(row)
     })
 }
+
 updateTableUI()
 // console.table(records)
-
-//We need to get the student details from the form
-//Target form
-const form = document.querySelector('form')
-// console.dir(form)
-//Add event listener to form (submit)
-form.addEventListener('submit', (event) => {
-
-    event.preventDefault() // prevent default form submission behavior
-
-    //Get values from input elements inside the form
-    const studentNameInput = document.querySelector('#student-name')
-    const studentClassInput = document.querySelector('#student-class')
-    const studentGenderInput = document.querySelector('#student-gender')
-    const studentAgeInput = document.querySelector('#student-age')
-
-    //Create new student object from values inside the form
-    const newStudent = {
-        id: records.length + 1,
-        name: studentNameInput.value,
-        currentClass: studentClassInput.value,
-        gender: studentGenderInput.value,
-        age: parseInt(studentAgeInput.value)
-    }
-
-    //Add new student object to array
-    records.push(newStudent)
-    localStorage.setItem("students", JSON.stringify(records))
-
-    //Use createElements to render the updated array
-    updateTableUI()
-    console.table(records)
-
-    studentNameInput.value = ""
-    studentClassInput.value = ""
-    studentGenderInput.value = ""
-    studentAgeInput.value = ""
-})
-
-
 
 function deleteStudent(id) {
     records = records.filter((student) => {
