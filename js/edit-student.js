@@ -1,7 +1,5 @@
 
-
 let students = JSON.parse(localStorage.getItem("students")) ?? []
-
 
 const params = new URLSearchParams(window.location.search)
 const studentId = parseInt(params.get('id'))
@@ -10,7 +8,6 @@ const currentStudent = students.find((x) => {
     return x.id === studentId
 })
 
-console.log(currentStudent)
 
 const studentNameInput = document.querySelector('#student-name')
 const studentClassInput = document.querySelector('#student-class')
@@ -35,7 +32,7 @@ form.addEventListener('submit', (event) => {
     currentStudent.age = studentAgeInput.value
     //Add new student object to array
     
-    const updatedStudentsArray = students.map((x)=>{
+  students = students.map((x)=>{
         if (x.id === studentId) {
             return {...x, ...currentStudent}
         } else {
@@ -43,7 +40,7 @@ form.addEventListener('submit', (event) => {
         }
     })
 
-    localStorage.setItem('students', JSON.stringify(updatedStudentsArray))
+    localStorage.setItem('students', JSON.stringify(students))
   
     studentNameInput.value = ""
     studentClassInput.value = ""
