@@ -91,3 +91,7 @@ form > button {
    font-weight: 500;
    margin-top: 20px;
 }
+
+.hidden {
+   display: none;
+}

@@ -7,7 +7,10 @@ if (startValue !== null) {
     records = []
 }
 
+const notice = document.querySelector('#notice')
+const table = document.querySelector('table')
 const container = document.querySelector('tbody')
+
 
 // Loop through the records and create a row for each student 
 function updateTableUI(arr) {
@@ -78,10 +81,16 @@ searchInput.addEventListener('keyup', (event) => {
         const matchingStudents = records.filter((x) => {
             return x.name.includes(query)
         })
-        updateTableUI(matchingStudents)
+
+        if (matchingStudents.length === 0) {
+            table.classList.add('hidden')
+            notice.classList.remove('hidden')
+            const nameContainer = document.querySelector('#query')
+            nameContainer.textContent = query
+        } else {
+            table.classList.remove('hidden')
+            notice.classList.add('hidden')
+            updateTableUI(matchingStudents)
+        }
     }
 })
-
-function searchStudents() {
-
-}
