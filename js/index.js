@@ -10,10 +10,10 @@ if (startValue !== null) {
 const container = document.querySelector('tbody')
 
 // Loop through the records and create a row for each student 
-function updateTableUI() {
+function updateTableUI(arr) {
     container.innerHTML = ""
 
-    records.forEach((student) => {
+    arr.forEach((student) => {
         // Create row for each student
         const row = document.createElement('tr')
         // For each key in the object, create a td
@@ -52,45 +52,36 @@ function updateTableUI() {
                         </button>
                         `
         row.appendChild(actionsColumn)
-        // const editLink = document.createElement('a')
-        // editLink.href = `edit-student.html?id=${student.id}&name=${student.name}`
-
-        // const editBtn = document.createElement('button')
-        // editBtn.type = 'button'
-        // editBtn.textContent = "Edit"
-
-        // const editIcon = document.createElement('span')
-        // editBtn.classList.add("material-symbols-outlined")
-        // editBtn.textContent = "edit"
-
-        // editBtn.appendChild(editIcon)
-
-        // editLink.appendChild(editBtn)
-
-        // const deleteBtn = document.createElement('button')
-        // deleteBtn.type = 'button'
-
-        // actionsColumn.appendChild(editLink)
-        // row.appendChild(actionsColumn)
-        // actionsColumn.appendChild(deleteBtn)
-
-        // const deleteIcon = document.createElement('span')
-        // deleteBtn.classList.add("material-symbols-outlined")
-        // deleteBtn.textContent = "delete"
-
-        // deleteBtn.appendChild(deleteIcon)
-        // Append row to container
         container.appendChild(row)
     })
 }
 
-updateTableUI()
-// console.table(records)
+updateTableUI(records)
 
+// Delete student functionality
 function deleteStudent(id) {
     records = records.filter((student) => {
         return student.id !== id
     })
     localStorage.setItem("students", JSON.stringify(records))
     updateTableUI()
+}
+
+// Search Matching students
+
+const searchInput = document.querySelector('#student-search')
+
+
+searchInput.addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        const query = event.target.value
+        const matchingStudents = records.filter((x) => {
+            return x.name.includes(query)
+        })
+        updateTableUI(matchingStudents)
+    }
+})
+
+function searchStudents() {
+
 }
